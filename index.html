@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content="print">
+		<meta name="Keywords" content="HTML5音乐播放器">
+		<meta name="Description" content="HTML5,音乐播放器,Audio">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">  &lt;!&ndash; 手机端 &ndash;&gt;-->
+		<link rel="icon" href="img/icon.png" type="image/x-icon">
+		<link rel="stylesheet" href="css/reset.css">  <!-- 样式初始化 -->
+        <link rel="stylesheet" href="source/iconfont/iconfont.css"> <!-- 图标css -->
+		<link rel="stylesheet" href="css/index.css">  <!-- 当前页面css -->
+		<!--[if lt IE 10]>
+			<div style="position:relative;z-index:99;width:100%;height:50px;background:#ffffe9;color:#1e5494;border-bottom:1px solid #e6e6c6;text-align:center;line-height:50px;font-size:12px;">您使用的浏览器版本过低，无法播放音乐，请更新或者更换浏览器。</div>
+            <script>
+                alert("您的浏览器不支持播放音乐,请更换或者更新浏览器,谢谢");
+            </script>
+		<![endif]-->
+		<title>Audio Play</title>
+	</head>
+	<body>
+        <!-- main -->
+        <section class="main">
+            <!-- container -->
+            <section class="main-container">
+                <!-- content -->
+                <section class="content clearfix">
+                    <!-- music-container -->
+                    <div class="music-container">
+                        <ul class="music-oper clearfix">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="iconfont icon-ziyuan"></i>
+                                    <span>清空列表</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="music-wrapper">
+                            <ul class="music-list">
+                                <li class="top">
+                                    <div class="checkbox-wrap">
+                                        <span class="checkbox iconfont"></span>
+                                    </div>
+                                    <div class="song-name">
+                                        <span>歌曲</span>
+                                    </div>
+                                    <span class="song-singer">歌手</span>
+                                    <span class="song-time">操作</span>
+                                </li>
+                                <!--<li class="song">-->
+                                    <!--<div class="checkbox-wrap">-->
+                                        <!--<span class="checkbox iconfont"></span>-->
+                                        <!--<span class="number">1</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="song-name">-->
+                                        <!--<span>IF YOU</span>-->
+                                        <!--<div class="icon-list-menu">-->
+                                            <!--<a href="javascript:;" class="menu-song-play"></a>-->
+                                            <!--<a href="javascript:;" class="menu-song-download"></a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<span class="song-singer">BIGBANG</span>-->
+                                    <!--<span class="song-time">04:30</span>-->
+                                <!--</li>-->
+                            </ul>
+                            <div class="scroll-bar">
+                                <i></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- music-show -->
+                    <div class="music-show">
+                        <div class="music-info">
+                            <a href="javascript:;" class="music-logo">
+                                <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004XEwud03XB6I.jpg?max_age=2592000" width="300" height="300" alt="图片封面">
+                            </a>
+                            <div>
+                                <p class="music-info-name omit">歌曲名：<a href="javascript:;" target="_blank">Loading</a></p>
+                                <p class="music-info-singer omit">歌手名：<a href="javascript:;" target="_blank">Loading</a></p>
+                                <p class="music-info-albums omit">专辑名：<a href="javascript:;" target="_blank">Loading</a></p>
+                            </div>
+                        </div>
+                        <div class="music-lyrics-wrap">
+                            <ul class="music-lyrics">
+                                <li class="active">歌词正在加载中...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <!-- player -->
+                <section class="main-player">
+                    <div class="oper-music">
+                        <i class="btn-prev"></i>
+                        <i class="btn-play"></i>
+                        <i class="btn-next"></i>
+                    </div>
+                    <div class="music-progress">
+                        <div class="progress-content clearfix">
+                            <p class="content-name"><a href="javascript:;" target="_blank">Song Name</a> - <a href="javascript:;" target="_blank">Print</a></p>
+                            <p class="content-time">00:00 / 00:00</p>
+                        </div>
+                        <div class="progress-bar">
+                            <i class="progress-bar-line"></i>
+                            <i class="progress-bar-dot"></i>
+                        </div>
+                    </div>
+                    <div class="music-volumn">
+                        <i class="volumn-icon"></i>
+                        <div class="volumn-progress">
+                            <i class="volumn-progress-line"></i>
+                            <i class="volumn-progress-dot"></i>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <!-- mask -->
+        <div class="bg-blur"></div>
+        <div class="mask"></div>
+        <!-- search -->
+        <div class="search">
+            <input type="text" placeholder="请输入你要听的音乐">
+            <i class="iconfont icon-icon-system-search search-icon"></i>
+        </div>
+        <!-- propWin -->
+        <div class="propWin"></div>
+
+        <!-- audio -->
+        <audio class="song-play">您的浏览器不支持音频标签,建议您升级您的浏览器</audio>
+        <script src="js/lib/jquery.3.2.1.min.js"></script>
+        <script src="js/lib/jquery.mousewheel.js"></script>
+        <script src="js/lib/matchUrlData.js"></script>
+		<script src="js/index.js"></script>
+	</body>
+</html>
