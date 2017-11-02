@@ -392,7 +392,7 @@
             "url" : "https://route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
             success : function(data){
                 if(!data.showapi_res_body.lyric){
-                    Prop("歌词请求失败！", true);
+                    $oMainMusicLyrics.html("<li class=\"active\">歌词获取失败,该音乐可能没有歌词</li>");
                     return;
                 }
                 $oMainMusicLyrics.html("");
