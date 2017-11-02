@@ -3,6 +3,10 @@
 //     * QQ -> 2662256509       //
 /*=============================*/
 (function(win, doc){
+    //ajax请求的协议
+    var ajaxProtocal = location.protocol;
+    ajaxProtocal = ajaxProtocal==="file:"?"http:":ajaxProtocal;
+    
     //解决HTML5 requestAnimationFrame兼容
     (function(win){
         var vendors = ['webkit', 'moz'];
@@ -348,7 +352,7 @@
     function getData(_songId, _w, _page, index, callBack){
         $.ajax({
             type : "GET",
-            url : "https://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
+            url : ajaxProtocal+"//route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
             success : function(data){
                 if(typeof data === "string"){
                     Prop("您的操作过于频繁,请刷新重试");
@@ -389,7 +393,7 @@
         }
         $.ajax({
             "type" : "GET",
-            "url" : "https://route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
+            "url" : ajaxProtocal+"//route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
             success : function(data){
                 if(!data.showapi_res_body.lyric){
                     $oMainMusicLyrics.html("<li class=\"active\">歌词获取失败,该音乐可能没有歌词</li>");
