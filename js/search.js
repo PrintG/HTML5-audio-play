@@ -2,6 +2,10 @@
  * Created by Fly on 2017-10-29.
  */
 (function () {
+    //ajax请求的协议
+    var ajaxProtocal = location.protocol;
+    ajaxProtocal = ajaxProtocal==="file:"?"http:":ajaxProtocal;
+    
     var $main = $(".main"),
         $tip = $main.find(".tip"),  //显示提示
         $searchList = $main.find(".search-list tbody"); //展示数据内容
@@ -13,7 +17,7 @@
     //ajax请求歌曲搜索数据
     $.ajax({
         type : "GET",
-        url : "https://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
+        url : ajaxProtocal+"//route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
         success : function(data){
             data = data.showapi_res_body.pagebean;
 
