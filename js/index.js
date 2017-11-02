@@ -3,6 +3,12 @@
 //     * QQ -> 2662256509       //
 /*=============================*/
 (function(win, doc){
+    //如果是第一次进入,则添加一首默认音乐
+	if(!localStorage.getItem("first")){
+		localStorage.setItem("first","active");
+		location.href = location.href+"?songid=849036&page=1&w=bigbang";
+	}
+    
     //ajax请求的协议
     var ajaxProtocal = location.protocol;
     ajaxProtocal = ajaxProtocal==="file:"?"http:":ajaxProtocal;
