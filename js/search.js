@@ -13,7 +13,7 @@
     //ajax请求歌曲搜索数据
     $.ajax({
         type : "GET",
-        url : "http://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
+        url : "https://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
         success : function(data){
             data = data.showapi_res_body.pagebean;
 
