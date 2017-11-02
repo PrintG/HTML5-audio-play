@@ -348,7 +348,7 @@
     function getData(_songId, _w, _page, index, callBack){
         $.ajax({
             type : "GET",
-            url : "http://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
+            url : "https://route.showapi.com/213-1?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&keyword="+encodeURIComponent(_w)+"&page="+_page,
             success : function(data){
                 if(typeof data === "string"){
                     Prop("您的操作过于频繁,请刷新重试");
@@ -389,7 +389,7 @@
         }
         $.ajax({
             "type" : "GET",
-            "url" : "http://route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
+            "url" : "https://route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
             success : function(data){
                 if(!data.showapi_res_body.lyric){
                     Prop("歌词请求失败！", true);
