@@ -307,13 +307,13 @@
                            }
                            //清空_storage对象中的音乐数据
                            for(key in _storage){
-                               if(key !== "index") {
+                               if(!isNaN(+key)) {
                                    _storage.removeItem(key);
                                }
                            }
                            //重新排版填入数据
                            for(key in tmp){
-                               if(key !== "index"){
+                               if(!isNaN(+key)){
                                    _storage.setItem(num, tmp[key]);
                                    num ++;
                                }
