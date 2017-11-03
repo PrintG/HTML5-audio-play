@@ -3,16 +3,16 @@
 //     * QQ -> 2662256509       //
 /*=============================*/
 (function(win, doc){
-    //如果是第一次进入,则添加一首默认音乐
+
+	//如果是第一次进入,则添加一首默认音乐
 	if(!localStorage.getItem("first")){
 		localStorage.setItem("first","active");
 		location.href = location.href+"?songid=849036&page=1&w=bigbang";
 	}
-    
+
     //ajax请求的协议
     var ajaxProtocal = location.protocol;
     ajaxProtocal = ajaxProtocal==="file:"?"http:":ajaxProtocal;
-    
     //解决HTML5 requestAnimationFrame兼容
     (function(win){
         var vendors = ['webkit', 'moz'];
@@ -397,6 +397,7 @@
         if(!currentA){
             return;
         }
+        $oMainMusicLyrics.html("<li class=\"active\">正在获取歌词中...</li>");
         $.ajax({
             "type" : "GET",
             "url" : ajaxProtocal+"//route.showapi.com/213-2?showapi_appid=48418&showapi_sign=a0bdadc363dd4d1b8b6fcd1610f23422&musicid="+currentA.attr("data-songid"),
@@ -461,7 +462,7 @@
                 }
             },
             error : function(){
-                Prop("歌词获取失败,未知的错误",true);
+                $oMainMusicLyrics.html("<li class=\"active\">歌词获取失败！</li>");
             }
         });
     }
@@ -511,27 +512,31 @@
         confineNext = true;
     //上一曲
     $oMainPrevBtn.click(function(){
-        //限制点击频率 0.5s/次
-        if(confinePrev === true || new Date() - confinePrev > 500) {
-            nIndex = $currentPlaying.index() - 2;
-            if (nIndex === -1) {
-                nIndex = $oMusicList.find("li.song").length - 1;
-            }
-            changeSong(nIndex);
-            confinePrev = new Date();
+        if($currentPlaying){
+        	//限制点击频率 0.5s/次
+	        if(confinePrev === true || new Date() - confinePrev > 500) {
+	            nIndex = $currentPlaying.index() - 2;
+	            if (nIndex === -1) {
+	                nIndex = $oMusicList.find("li.song").length - 1;
+	            }
+	            changeSong(nIndex);
+	            confinePrev = new Date();
+	        }
         }
     });
     //下一曲
     $oMainNextBtn.click(function(){
-        //限制点击频率 0.5s/次
-        if(confineNext === true || new Date() - confineNext > 500) {
-            nIndex = $currentPlaying.index();
-            if (nIndex >= $oMusicList.find("li.song").length) {
-                nIndex = 0;
-            }
-            changeSong(nIndex);
-            confineNext = new Date();
-        }
+    	if($currentPlaying){
+	        //限制点击频率 0.5s/次
+	        if(confineNext === true || new Date() - confineNext > 500) {
+	            nIndex = $currentPlaying.index();
+	            if (nIndex >= $oMusicList.find("li.song").length) {
+	                nIndex = 0;
+	            }
+	            changeSong(nIndex);
+	            confineNext = new Date();
+	        }
+    	}
     });
     //======== 播放进度条/音乐进度条/更新信息 ========//
     //更新进度条的内容信息 + 歌曲展示的logo和信息
@@ -702,14 +707,16 @@
 
     //当音乐播放完毕时自动跳到下一首
     oAudio.addEventListener("timeupdate", function(){
-        var TimeProp = +(this.currentTime/this.duration).toFixed(2),
-            nIndex = $currentPlaying.index();
-        if(nIndex >= $oMusicList.find("li.song").length){
-            nIndex = 0;
-        }
-        if(TimeProp >= 1){
-            changeSong(nIndex);
-        }
+    	if($currentPlaying){
+	        var TimeProp = +(this.currentTime/this.duration).toFixed(2),
+	            nIndex = $currentPlaying.index();
+	        if(nIndex >= $oMusicList.find("li.song").length){
+	            nIndex = 0;
+	        }
+	        if(TimeProp >= 1){
+	            changeSong(nIndex);
+	        }
+    	}
     }, false);
 
 
@@ -735,6 +742,14 @@
         num = Math.floor(num);
         return num<10?"0"+num:""+num;
     }
+
+    //================== 错误处理 ====================//
+    oAudio.addEventListener("error", function(){
+    	Prop("音乐加载出错,页面将在3秒后自动刷新");
+    	setTimeout(function(){
+    		location.href = location.href;
+    	},3000);
+    }, false);
 
 
     //================== 弹窗操作 ====================//

@@ -5,7 +5,7 @@
     //ajax请求的协议
     var ajaxProtocal = location.protocol;
     ajaxProtocal = ajaxProtocal==="file:"?"http:":ajaxProtocal;
-    
+
     var $main = $(".main"),
         $tip = $main.find(".tip"),  //显示提示
         $searchList = $main.find(".search-list tbody"); //展示数据内容
